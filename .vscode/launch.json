@@ -12,7 +12,7 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "c:/Users/H372804/Documents/PlatformIO/Projects/CO2Ampel/.pio/build/fm-devkit/firmware.elf",
+            "executable": "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/build/fm-devkit/firmware.elf",
             "projectEnvName": "fm-devkit",
             "toolchainBinDir": "C:/Users/H372804/.platformio/packages/toolchain-xtensa32/bin",
             "preLaunchTask": {
@@ -25,7 +25,7 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "c:/Users/H372804/Documents/PlatformIO/Projects/CO2Ampel/.pio/build/fm-devkit/firmware.elf",
+            "executable": "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/build/fm-devkit/firmware.elf",
             "projectEnvName": "fm-devkit",
             "toolchainBinDir": "C:/Users/H372804/.platformio/packages/toolchain-xtensa32/bin",
             "internalConsoleOptions": "openOnSessionStart"

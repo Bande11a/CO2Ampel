@@ -12,7 +12,7 @@ CRGBPalette16 gPal;
 #define TX_PIN 10
 #define BAUDRATE 9600               // Native to the sensor (do not change)
 MHZ19 myMHZ19;
-HardwareSerial mySerial(1);
+HardwareSerial mySerial(0);
 
 
 #define CLK 18
@@ -23,17 +23,14 @@ TM1637Display display(CLK, DIO);
 
 unsigned long getDataTimer = 0;
 
-int count = 0;
+
 void setup()
 {
     Serial.begin(9600);
 
     mySerial.begin(BAUDRATE, SERIAL_8N1, RX_PIN, TX_PIN);                                 // Uno example: Begin Stream with MHZ19 baudrate
-
     myMHZ19.begin(mySerial);                                // *Important, Pass your Stream reference
-
-    myMHZ19.autoCalibration(true);
-    Serial.print("ABC Status: "); myMHZ19.getABC() ? Serial.println("ON") :  Serial.println("OFF");
+    myMHZ19.autoCalibration();
 
     FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);
 
@@ -69,11 +66,7 @@ void loop()
             FastLED.show();
         }
         display.setBrightness(0x0f);
-        display.showNumberDecEx(count, 0x00, false, 4, 0);
-        count ++;
-        if(count == 10000){
-            count = 0;
-        }
+        display.showNumberDecEx(CO2, 0x00, false, 4, 0);
 
         getDataTimer = millis();              // Update inerval
     }
