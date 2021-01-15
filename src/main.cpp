@@ -16,6 +16,7 @@ Any questions email: malte.gehrmann@honeywell.com
 #include "FastLED.h"
 #include <TM1637Display.h>
 #include "RTClib.h"
+#include <EEPROM.h>
 //=======================================================
 
 
@@ -60,10 +61,25 @@ unsigned long ClockDataTimer = 0;
 bool ShowTime = false;
 int ShowTimeCount = 0;
 bool blink = true;
+byte Colour;
+int buttonState;
+unsigned long ButtonCoolDown;
+bool DayMode = true;
+bool SummerTime;
 //=======================================================
 void setup()
 {
     Serial.begin(9600);
+
+
+    // SummerTime = false;
+    // EEPROM.write(2, SummerTime);
+    // SummerTime = true;
+    // Serial.println(SummerTime);
+    // SummerTime = EEPROM.read(2);
+    pinMode(32, INPUT_PULLDOWN);
+    
+    // Serial.println(SummerTime);
 
     mySerial.begin(BAUDRATE, SERIAL_8N1, RX_PIN, TX_PIN);                                 // Uno example: Begin Stream with MHZ19 baudrate
     myMHZ19.begin(mySerial);                                // *Important, Pass your Stream reference
@@ -76,6 +92,7 @@ void setup()
         Serial.flush();
         abort();
     }
+
     if(rtc.lostPower()) {
         // this will adjust to the date and time at compilation
         rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
@@ -88,23 +105,59 @@ void setup()
 //=======================================================
 void loop()
 {
-    
-    if (millis() - getDataTimer >= 2000)         // Check if interval has elapsed (non-blocking delay() equivilant)
+    buttonState = digitalRead(32);
+
+    if(!buttonState && millis() - buttonState > 500){
+        if(DayMode){
+            DayMode = false;
+            leds[0] = CRGB(0,0,0);
+            FastLED.show();
+            display.setBrightness(0x00);
+        }
+        else{
+            DayMode = true;
+            Colour = 0;
+        }
+        buttonState = millis();
+        // while(!digitalRead(32)){
+        //     if(millis() - buttonState > 10000){
+        //         DateTime now = rtc.now();
+        //         unsigned int time = now.unixtime();
+        //         time  += 1440; 
+        //     }
+        //     delay(10);
+        // }
+    }
+
+
+    if (millis() - getDataTimer >= 2000 && DayMode == true)    
     {
         int CO2;                                // Creates CO2 variable and reads the current CO2 value
         CO2 = myMHZ19.getCO2();
 
-        if(CO2 <= 600){                         //if the value of the co2 is less than 600 the LED will be set to green
-            leds[0] = CRGB(0,255,0);
-            FastLED.show();
+        if(CO2 <= 800){
+            if(Colour != 1){
+                leds[0] = CRGB(255,255,0);        //if the value of the co2 is less than 800 the LED will be set to green
+                FastLED.show();
+                Colour = 1;
+            }                         
+            
         }
-        else if(CO2 <= 800){                    //if the value of the co2 is between 600 and 800 the LED will be set to yellow
-            leds[0] = CRGB(255,255,0);
-            FastLED.show();
+        else if(CO2 <= 1000){
+            if(Colour != 2){
+                leds[0] = CRGB(255,255,0);        //if the value of the co2 is between 600 and 800 the LED will be set to yellow
+                FastLED.show();
+                Colour = 2;         
+            }                    
+            
         }
         else{
-            leds[0] = CRGB(255,0,0);            //if the value of the co2 is more than 800 the LED will turn to red
-            FastLED.show();
+            if(Colour != 3){
+                leds[0] = CRGB(255,255,0);            //if the value of the co2 is more than 800 the LED will turn to red
+                FastLED.show();
+                Colour = 3;
+            }
+
         }
 
         if(!ShowTime){
@@ -124,7 +177,7 @@ void loop()
         
     }
 
-    if(millis() - ClockDataTimer >= 500 && ShowTime){
+    if(millis() - ClockDataTimer >= 500 && ShowTime && DayMode == true){
            DateTime time = rtc.now();
 
         int hour = time.hour();
