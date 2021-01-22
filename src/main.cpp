@@ -49,6 +49,8 @@ TM1637Display display(CLK, DIO);
 //=======================================================
 //Setup for the RTC
 RTC_DS3231 rtc;
+// 16 = SDA
+// 17 = SCL
 
 //=======================================================
 
@@ -86,8 +88,9 @@ void setup()
         Serial.flush();
         abort();
     }
+
     // DateTime compile = DateTime(F(__DATE__), F(__TIME__));
-    // rtc.adjust(DateTime(compile.unixtime() - 12)); //Uncomment this to adjust the time and timezone
+    // rtc.adjust(DateTime(compile.unixtime() + 15)); //Uncomment this to adjust the time and timezone
 
     if(rtc.lostPower()) {
         // this will adjust to the date and time at compilation

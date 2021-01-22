@@ -10,7 +10,6 @@
             "includePath": [
                 "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/include",
                 "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/src",
-                "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/EEPROM/src",
                 "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/libdeps/fm-devkit/RTClib",
                 "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                 "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/libdeps/fm-devkit/TM1637",
@@ -82,6 +81,7 @@
                 "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src",
                 "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/BluetoothSerial/src",
                 "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/DNSServer/src",
+                "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/EEPROM/src",
                 "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/ESP32/src",
                 "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src",
                 "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src",
@@ -107,7 +107,6 @@
                 "path": [
                     "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/include",
                     "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/src",
-                    "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/EEPROM/src",
                     "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/libdeps/fm-devkit/RTClib",
                     "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                     "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/libdeps/fm-devkit/TM1637",
@@ -179,6 +178,7 @@
                     "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src",
                     "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/BluetoothSerial/src",
                     "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/DNSServer/src",
+                    "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/EEPROM/src",
                     "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/ESP32/src",
                     "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src",
                     "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src",
