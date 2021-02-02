@@ -89,8 +89,8 @@ void setup()
         abort();
     }
 
-    // DateTime compile = DateTime(F(__DATE__), F(__TIME__));
-    // rtc.adjust(DateTime(compile.unixtime() + 15)); //Uncomment this to adjust the time and timezone
+    DateTime compile = DateTime(F(__DATE__), F(__TIME__));
+    rtc.adjust(DateTime(compile.unixtime() + 15)); //Uncomment this to adjust the time and timezone
 
     if(rtc.lostPower()) {
         // this will adjust to the date and time at compilation
@@ -155,7 +155,7 @@ void loop()
         int CO2;                                // Creates CO2 variable and reads the current CO2 value
         CO2 = myMHZ19.getCO2();
 
-        if(CO2 <= 800){
+        if(CO2 <= 750){
             if(Colour != 1){
                 leds[0] = CRGB(0,255,0);        //if the value of the co2 is less than 800 the LED will be set to green
                 FastLED.show();
@@ -163,7 +163,7 @@ void loop()
             }                         
             
         }
-        else if(CO2 <= 1000){
+        else if(CO2 <= 1250){
             if(Colour != 2){
                 leds[0] = CRGB(255,255,0);        //if the value of the co2 is between 600 and 800 the LED will be set to yellow
                 FastLED.show();
