@@ -89,13 +89,23 @@ void setup()
         abort();
     }
 
-    DateTime compile = DateTime(F(__DATE__), F(__TIME__));
-    rtc.adjust(DateTime(compile.unixtime() + 15)); //Uncomment this to adjust the time and timezone
+    leds[0] = CRGB(255,0,0);
+    FastLED.show();
+    delay(200); 
+    leds[0] = CRGB(255,255,0);
+    FastLED.show();
+    delay(200);
+    leds[0] = CRGB(0,255,0);
+        FastLED.show();
+    delay(200);  
 
-    if(rtc.lostPower()) {
-        // this will adjust to the date and time at compilation
-        rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-    }
+    // DateTime compile = DateTime(F(__DATE__), F(__TIME__));
+    // rtc.adjust(DateTime(compile.unixtime() + 15)); //Uncomment this to adjust the time and timezone
+
+    // if(rtc.lostPower()) {
+    //     // this will adjust to the date and time at compilation
+    //     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    // }
   
 }
 //=======================================================
@@ -161,8 +171,15 @@ void loop()
                 FastLED.show();
                 Colour = 1;
             }                         
-            
         }
+        // else if(CO2 <= 1000){
+        //     if(Colour != 4){
+        //         leds[0] = CRGB(0,0,255);
+        //         FastLED.show();
+        //         Colour = 4;
+
+        //     }
+        // }
         else if(CO2 <= 1250){
             if(Colour != 2){
                 leds[0] = CRGB(255,255,0);        //if the value of the co2 is between 600 and 800 the LED will be set to yellow
