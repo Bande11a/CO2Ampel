@@ -17,5 +17,14 @@ The libarys I used are:
 4. RTClib by Adafruit
 
 
+## PinOuts
+
+1. CO2 Sensor: Tx -> SO2, Rx -> SO3
+2. LED: Di -> G25
+3. RTC: SDA -> G16, SCL -> G17
+4. 7 Segment: CLK -> G18, DIO - > G19
+5. Sleep Button: G32
+
+
 ## Questions:
 Any questions email: malte.gehrmann@honeywell.com
