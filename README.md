@@ -1,6 +1,6 @@
 # CO2Ampel / CO2 Traffic Light
 
-This program was developed by Malte Gehrmann. It is CO2 trafic light powered by an ESP32. It notifys people in the room
+This program was developed by Malte Gehrmann. It is CO2 traffic light powered by an ESP32. It notifys people in the room
 when they need to open their windows to let in fresh air by changing an LED from Green to yellow to red.
 It will also display the current time and current CO2 value on a 4 digit 7 segment display.
 
