@@ -46,16 +46,6 @@ HardwareSerial mySerial(0);
 TM1637Display display(CLK, DIO);
 //=======================================================
 
-
-//=======================================================
-//Setup for the RTC
-RTC_DS3231 rtc;
-// 16 = SDA
-// 17 = SCL
-
-//=======================================================
-
-
 //=======================================================
 // Input Pin
 #define Switch_pin 32
@@ -85,22 +75,7 @@ void setup()
     myMHZ19.begin(mySerial);                             
     myMHZ19.autoCalibration();
 
-    FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);         //Setting up the FASTLED libaray
-
-    if(!rtc.begin()) {                                              //This will end the code if it cant communicate with the RTC
-        Serial.println("Couldn't find RTC!");
-        Serial.flush();
-        abort();
-    }
-
-
-    // DateTime compile = DateTime(F(__DATE__), F(__TIME__));       //Uncomment this to adjust the time and timezone it takes the upload time and sets it
-    // rtc.adjust(DateTime(compile.unixtime() + 15));               //once the ESP runs the code once it re upload this with the code commented out
-
-    if(rtc.lostPower()) {
-        rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));             //If the RTC chip loses power it will re set the time
-    }
-  
+    FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);         //Setting up the FASTLED libaray  
 }
 //=======================================================
 
@@ -121,36 +96,7 @@ void loop()
             DayMode = true;
             Colour = 0;
         }
-        buttonState = millis();
         delay(500);
-        while(!digitalRead(32)){
-            if(millis() - buttonState > 10000){
-                unsigned int Forwardstime = rtc.now().unixtime();
-                DateTime AdjsutForwardsTime = DateTime(Forwardstime + 3600);
-                rtc.adjust(AdjsutForwardsTime);
-                int Forwardshour = AdjsutForwardsTime.hour();
-                int Forwardsmin = AdjsutForwardsTime.minute();
-                int ForwardsDisplayTime = Forwardshour * 100 + Forwardsmin;
-                display.setBrightness(0x0f);
-                display.showNumberDecEx(ForwardsDisplayTime, 0x40, false, 4, 0);
-                while(!digitalRead(32)){
-                    if(millis() - buttonState > 15000){
-                        unsigned int Backwardstime = rtc.now().unixtime();
-                        DateTime AdjsutBackwardsTime = DateTime(Backwardstime -7200);
-                        rtc.adjust(AdjsutBackwardsTime);
-                        int Backwardshour = AdjsutBackwardsTime.hour();
-                        int Backwardsmin = AdjsutBackwardsTime.minute();
-                        int BackwardsDisplayTime = Backwardshour * 100 + Backwardsmin;
-                        display.setBrightness(0x0f);
-                        display.showNumberDecEx(BackwardsDisplayTime, 0x40, false, 4, 0);
-                        break;
-                    }
-                    
-                }
-                break;
-                
-            }
-        }
     }
 
 
@@ -158,6 +104,8 @@ void loop()
     {
         int CO2;                                // Creates CO2 variable and reads the current CO2 value
         CO2 = myMHZ19.getCO2();
+        display.setBrightness(0x0f);
+        display.showNumberDecEx(CO2, 0x00, false, 4, 0);
 
         if(CO2 <= 750){
             if(Colour != 1){
@@ -182,50 +130,7 @@ void loop()
             }
 
         }
-
-        if(!ShowTime){
-            display.setBrightness(0x0f);            //Updates the value showen on the display
-            display.showNumberDecEx(CO2, 0x00, false, 4, 0);
-            if(ShowTimeCount >= 15){
-                ShowTimeCount = 0;
-                ShowTime = true;
-            }
-            else{
-                ShowTimeCount++;
-            }
-        }
-    
         getDataTimer = millis();              // Update inerval
-
-        
-    }
-
-    if(millis() - ClockDataTimer >= 500 && ShowTime && DayMode){
-        DateTime time = rtc.now();                                          //Gets the time
-
-        int hour = time.hour();                                             //Reads the hour out of the DateTime object (Unix time)
-        int min = time.minute();                                            //Reads the min out of the DateTime object (Unix time)
-        int DisplayTime = hour * 100 + min;                                 //Converts the hour and min to the number that is shown on the display
-        
-        if(blink){                                                          //Pushes the time with the to the display with middle dots
-            display.setBrightness(0x0f); 
-            display.showNumberDecEx(DisplayTime, 0x40, false, 4, 0);
-            blink = false;
-        }
-        else{                                                              //Pushes the time without the to the display with middle dots 
-            display.setBrightness(0x0f); 
-            display.showNumberDecEx(DisplayTime, 0x00, false, 4, 0);
-            blink = true;
-        }
-        if(ShowTimeCount >= 60){
-            ShowTimeCount = 0;
-            ShowTime = false;
-        }
-        else{
-            ShowTimeCount++;
-        }
-
-        ClockDataTimer = millis();
     }
 }
 //=======================================================
