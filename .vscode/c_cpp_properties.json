@@ -10,8 +10,6 @@
             "includePath": [
                 "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/include",
                 "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/src",
-                "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/libdeps/fm-devkit/RTClib",
-                "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                 "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/libdeps/fm-devkit/TM1637",
                 "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/libdeps/fm-devkit/FastLED/src",
                 "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
@@ -98,6 +96,7 @@
                 "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src",
                 "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                 "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
+                "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                 "C:/Users/H372804/.platformio/packages/tool-unity",
                 ""
             ],
@@ -106,8 +105,6 @@
                 "path": [
                     "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/include",
                     "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/src",
-                    "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/libdeps/fm-devkit/RTClib",
-                    "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                     "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/libdeps/fm-devkit/TM1637",
                     "c:/Users/H372804/Desktop/CO2Ampel/CO2Ampel/.pio/libdeps/fm-devkit/FastLED/src",
                     "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
@@ -194,6 +191,7 @@
                     "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src",
                     "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                     "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
+                    "C:/Users/H372804/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                     "C:/Users/H372804/.platformio/packages/tool-unity",
                     ""
                 ]
