@@ -16,7 +16,6 @@ Any questions email: malte.gehrmann@honeywell.com
 #include "MHZ19.h"
 #include "FastLED.h"
 #include <TM1637Display.h>
-#include "RTClib.h"
 //=======================================================
 
 
