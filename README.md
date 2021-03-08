@@ -19,8 +19,8 @@ The libarys I used are:
 ## PinOuts
 
 1. CO2 Sensor: Tx -> SO2, Rx -> SO3
-2. LED: Di -> G25
-4. 7 Segment: CLK -> G18, DIO - > G19
+2. LED: Di -> G26
+4. 7 Segment: CLK -> G33, DIO - > G25
 5. Sleep Button: G32
 
 

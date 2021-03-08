@@ -21,7 +21,7 @@ Any questions email: malte.gehrmann@honeywell.com
 
 //=======================================================
 //Setting up the FastLED libaray
-#define DATA_PIN 25
+#define DATA_PIN 26
 #define NUM_LEDS 1
 CRGB leds[NUM_LEDS];
 CRGBPalette16 gPal;
@@ -40,14 +40,14 @@ HardwareSerial mySerial(0);
 
 //=======================================================
 //Setting up the 4 digit display
-#define CLK 18
-#define DIO 19
+#define CLK 33
+#define DIO 25
 TM1637Display display(CLK, DIO);
 //=======================================================
 
 //=======================================================
 // Input Pin
-#define Switch_pin 32
+#define Switch_pin 21
 //=======================================================
 
 
@@ -82,7 +82,7 @@ void setup()
 //=======================================================
 void loop()
 {
-    buttonState = digitalRead(32);
+    buttonState = digitalRead(Switch_pin);
 
     if(!buttonState){
         if(DayMode){
@@ -90,10 +90,12 @@ void loop()
             leds[0] = CRGB(0,0,0);
             FastLED.show();
             display.clear();
+            Serial.println("Turning Off");
         }
         else{
             DayMode = true;
             Colour = 0;
+            Serial.println("Turning On");
         }
         delay(500);
     }
